@@ -5,6 +5,8 @@ class KelasPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    CollectionReference courses = firestore.collection('Courses');
     Widget searchForm() {
       return Container(
         decoration: BoxDecoration(
@@ -62,10 +64,30 @@ class KelasPage extends StatelessWidget {
           SizedBox(
             height: 12,
           ),
-          Container(
-            color: kWhiteColor,
-            height: 1000,
-          )
+          StreamBuilder<QuerySnapshot>(
+            stream:
+                courses.orderBy('titleCourse', descending: true).snapshots(),
+            builder: (_, snapshot) {
+              if (snapshot.hasData) {
+                return Column(
+                  children: snapshot.data!.docs
+                      .map(
+                        (e) => ItemCard(
+                            (e.data() as dynamic)['titleCourse'],
+                            (e.data() as dynamic)['hargaCourse'],
+                            (e.data() as dynamic)['mentorCourse'],
+                            (e.data() as dynamic)['participantCourse'],
+                            onDelete: () {
+                          courses.doc(e.id).delete();
+                        }),
+                      )
+                      .toList(),
+                );
+              } else {
+                return Text("Loading...");
+              }
+            },
+          ),
         ],
       );
     }
