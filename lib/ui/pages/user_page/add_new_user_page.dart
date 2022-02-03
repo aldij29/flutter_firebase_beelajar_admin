@@ -1,16 +1,16 @@
 part of '../pages.dart';
 
-class AddClassPage extends StatefulWidget {
-  const AddClassPage({Key? key}) : super(key: key);
+class AddNewUserPage extends StatefulWidget {
+  const AddNewUserPage({Key? key}) : super(key: key);
 
   @override
-  _AddClassPageState createState() => _AddClassPageState();
+  State<AddNewUserPage> createState() => _AddNewUserPageState();
 }
 
-class _AddClassPageState extends State<AddClassPage> {
-  TextEditingController titleController = TextEditingController();
-  TextEditingController subTitleController = TextEditingController();
-  TextEditingController mentorController = TextEditingController();
+class _AddNewUserPageState extends State<AddNewUserPage> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController fullnameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   TextEditingController hargaController = TextEditingController();
   TextEditingController kategoriController = TextEditingController();
   Widget appBar() {
@@ -51,7 +51,7 @@ class _AddClassPageState extends State<AddClassPage> {
                 ),
               ),
               child: Text(
-                'Add New Course',
+                'Add New User',
                 style: regularTextStyle.copyWith(
                   fontSize: 18,
                   fontWeight: bold,
@@ -66,49 +66,35 @@ class _AddClassPageState extends State<AddClassPage> {
 
   Widget formAddCourse() {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
-    CollectionReference courseCollection =
-        FirebaseFirestore.instance.collection('Courses');
+    CollectionReference insertCollection =
+        FirebaseFirestore.instance.collection('Users');
 
     return Column(
       children: [
         CustomTextFormField(
-            title: 'Nama Course',
-            hintText: 'Isi Nama Course',
-            controller: titleController),
+            title: 'Email', hintText: 'Isi Email', controller: emailController),
         CustomTextFormField(
-            title: 'Subtitle Course',
-            hintText: 'Isi Nama Sub',
-            controller: subTitleController),
+            title: 'Nama Lengkap',
+            hintText: 'Isi Nama Lengkap',
+            controller: fullnameController),
         CustomTextFormField(
-            title: 'Mentor Course',
-            hintText: 'Isi Nama Mentor',
-            controller: mentorController),
-        CustomTextFormField(
-            title: 'Harga',
-            hintText: 'Harga Course Rp.',
-            controller: hargaController),
-        CustomTextFormField(
-            title: 'Kategori',
-            hintText: 'Kategori Course',
-            controller: kategoriController),
+            title: 'Password',
+            hintText: 'Password',
+            obsecureText: true,
+            controller: passwordController),
         GestureDetector(
           onTap: () {
             //// ADD DATA HERE
-            courseCollection.add({
-              'titleCourse': titleController.text,
-              'hargaCourse': int.tryParse(hargaController.text) ?? 0,
-              'subTitleCourse': subTitleController.text,
-              'mentorCourse': mentorController.text,
-              'kategoriCourse': kategoriController.text,
-              'participantCourse': 2,
-              'courseCreated': DateTime.now(),
+            insertCollection.add({
+              'email': emailController.text,
+              'fullname': fullnameController.text,
+              'password': passwordController.text,
+              'userSignUp': DateTime.now(),
               'lastEdited': DateTime.now()
             });
-            titleController.text = '';
-            subTitleController.text = '';
-            mentorController.text = '';
-            hargaController.text = '';
-            kategoriController.text = '';
+            emailController.text = '';
+            fullnameController.text = '';
+            passwordController.text = '';
           },
           child: Container(
             margin: const EdgeInsets.only(bottom: 30, top: 12),
@@ -119,7 +105,7 @@ class _AddClassPageState extends State<AddClassPage> {
                 borderRadius: BorderRadius.circular(defaultRadius)),
             child: Center(
               child: Text(
-                'Create Course',
+                'Create User',
                 style: titleTextStyle.copyWith(color: kWhiteColor),
               ),
             ),

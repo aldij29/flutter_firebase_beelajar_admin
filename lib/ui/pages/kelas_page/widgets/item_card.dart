@@ -16,8 +16,10 @@ class ItemCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String urlThumbnail =
+        'https://firebasestorage.googleapis.com/v0/b/beelajar-998c7.appspot.com/o/Assets%2Fimages%2Fstil-staMgYWHM7s-unsplash.jpg?alt=media&token=2b67ebdb-d488-49c5-b1eb-be8c862ea8ec';
     return Container(
-      margin: EdgeInsets.only(bottom: 12),
+      margin: const EdgeInsets.only(bottom: 12),
       height: 80,
       width: double.infinity,
       decoration: BoxDecoration(
@@ -33,12 +35,10 @@ class ItemCard extends StatelessWidget {
                     topLeft: Radius.circular(defaultRadius),
                     bottomLeft: Radius.circular(defaultRadius)),
                 image: DecorationImage(
-                    image: NetworkImage(
-                        'https://firebasestorage.googleapis.com/v0/b/beelajar-998c7.appspot.com/o/Assets%2Fimages%2Fstil-staMgYWHM7s-unsplash.jpg?alt=media&token=2b67ebdb-d488-49c5-b1eb-be8c862ea8ec'),
-                    fit: BoxFit.cover)),
+                    image: NetworkImage(urlThumbnail), fit: BoxFit.cover)),
           ),
           Container(
-            margin: EdgeInsets.only(left: 6, top: 6),
+            margin: const EdgeInsets.only(left: 6, top: 6),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -55,7 +55,7 @@ class ItemCard extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Column(

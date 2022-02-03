@@ -27,20 +27,26 @@ class OtherPage extends StatelessWidget {
     }
 
     Widget newClassButton() {
-      return Container(
-        margin: EdgeInsets.only(top: 12),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 12,
-          vertical: 8,
-        ),
-        decoration: BoxDecoration(
-          color: kPrimaryColor,
-          borderRadius: BorderRadius.circular(18),
-        ),
-        child: Text(
-          'Create New Other',
-          style: regularTextStyle.copyWith(
-              color: kWhiteColor, fontWeight: bold, fontSize: 16),
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => AddNewCategory()));
+        },
+        child: Container(
+          margin: const EdgeInsets.only(top: 12),
+          padding: const EdgeInsets.symmetric(
+            horizontal: 12,
+            vertical: 8,
+          ),
+          decoration: BoxDecoration(
+            color: kPrimaryColor,
+            borderRadius: BorderRadius.circular(18),
+          ),
+          child: Text(
+            'Create New Category',
+            style: regularTextStyle.copyWith(
+                color: kWhiteColor, fontWeight: bold, fontSize: 16),
+          ),
         ),
       );
     }
@@ -54,7 +60,7 @@ class OtherPage extends StatelessWidget {
             style:
                 regularTextStyle.copyWith(fontWeight: semiBold, fontSize: 16),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           Container(

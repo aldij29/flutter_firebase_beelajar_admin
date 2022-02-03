@@ -8,10 +8,10 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-    @override
+  @override
   void initState() {
     // TODO: implement initState
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.pushReplacementNamed(context, '/main-page');
     });
     super.initState();
@@ -29,8 +29,8 @@ class _SplashPageState extends State<SplashPage> {
             Container(
               height: 105,
               width: 240,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
+              decoration: const BoxDecoration(
+                  image: const DecorationImage(
                       image: AssetImage(
                         'assets/images/beelajar_logo.png',
                       ),

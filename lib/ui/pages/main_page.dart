@@ -10,7 +10,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   Widget _header() {
     return Container(
-      padding: EdgeInsets.only(top: 16.0, left: 24.0, right: 24),
+      padding: const EdgeInsets.only(top: 16.0, left: 24.0, right: 24),
       width: double.infinity,
       height: 120,
       color: kWhiteColor,
@@ -28,12 +28,12 @@ class _MainPageState extends State<MainPage> {
               Container(
                 height: 40,
                 width: 85,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
+                decoration: const BoxDecoration(
+                    image: const DecorationImage(
                   image: AssetImage('assets/images/beelajar_logo.png'),
                 )),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               Text(
@@ -54,34 +54,34 @@ class _MainPageState extends State<MainPage> {
   Widget buildContent(int currentIndex) {
     switch (currentIndex) {
       case 0:
-        return KelasPage();
+        return const KelasPage();
       case 1:
-        return UserPage();
+        return const UserPage();
       case 2:
-        return OtherPage();
+        return const OtherPage();
       default:
-        return KelasPage();
+        return const KelasPage();
     }
   }
 
   Widget tabMenu() {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 24),
+      padding: const EdgeInsets.symmetric(horizontal: 24),
       width: double.infinity,
       height: 30,
       child: Stack(
         children: [
-          CustomTabMenuItem(
+          const CustomTabMenuItem(
             index: 0,
             titleMenu: 'Kelas',
             align: Alignment.centerLeft,
           ),
-          CustomTabMenuItem(
+          const CustomTabMenuItem(
             index: 1,
             titleMenu: 'User',
             align: Alignment.center,
           ),
-          CustomTabMenuItem(
+          const CustomTabMenuItem(
             index: 2,
             titleMenu: 'Other',
             align: Alignment.centerRight,
@@ -100,11 +100,11 @@ class _MainPageState extends State<MainPage> {
           child: ListView(
             children: [
               _header(),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               tabMenu(),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               buildContent(currentIndex),

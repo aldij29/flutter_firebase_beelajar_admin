@@ -5,6 +5,8 @@ class KelasPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String urlThumbnail =
+        'https://firebasestorage.googleapis.com/v0/b/beelajar-998c7.appspot.com/o/Assets%2Fimages%2Fstil-staMgYWHM7s-unsplash.jpg?alt=media&token=2b67ebdb-d488-49c5-b1eb-be8c862ea8ec';
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     CollectionReference courses = firestore.collection('Courses');
     Widget searchForm() {
@@ -34,7 +36,7 @@ class KelasPage extends StatelessWidget {
           Navigator.pushNamed(context, '/add-class-page');
         },
         child: Container(
-          margin: EdgeInsets.only(top: 12),
+          margin: const EdgeInsets.only(top: 12),
           padding: const EdgeInsets.symmetric(
             horizontal: 12,
             vertical: 8,
@@ -61,7 +63,7 @@ class KelasPage extends StatelessWidget {
             style:
                 regularTextStyle.copyWith(fontWeight: semiBold, fontSize: 16),
           ),
-          SizedBox(
+          const SizedBox(
             height: 12,
           ),
           StreamBuilder<QuerySnapshot>(
@@ -72,19 +74,31 @@ class KelasPage extends StatelessWidget {
                 return Column(
                   children: snapshot.data!.docs
                       .map(
-                        (e) => ItemCard(
-                            (e.data() as dynamic)['titleCourse'],
-                            (e.data() as dynamic)['hargaCourse'],
-                            (e.data() as dynamic)['mentorCourse'],
-                            (e.data() as dynamic)['participantCourse'],
-                            onDelete: () {
-                          courses.doc(e.id).delete();
-                        }),
+                        (e) => GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DetailKelasPage(
+                                          titleCourse: (e.data()
+                                              as dynamic)['titleCourse'],
+                                          urlThumbnail: urlThumbnail,
+                                        )));
+                          },
+                          child: ItemCard(
+                              (e.data() as dynamic)['titleCourse'],
+                              (e.data() as dynamic)['hargaCourse'],
+                              (e.data() as dynamic)['mentorCourse'],
+                              (e.data() as dynamic)['participantCourse'],
+                              onDelete: () {
+                            courses.doc(e.id).delete();
+                          }),
+                        ),
                       )
                       .toList(),
                 );
               } else {
-                return Text("Loading...");
+                return const Text("Loading...");
               }
             },
           ),
