@@ -9,7 +9,8 @@ class AddNewUserPage extends StatefulWidget {
 
 class _AddNewUserPageState extends State<AddNewUserPage> {
   TextEditingController emailController = TextEditingController();
-  TextEditingController fullnameController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   TextEditingController hargaController = TextEditingController();
   TextEditingController kategoriController = TextEditingController();
@@ -74,9 +75,13 @@ class _AddNewUserPageState extends State<AddNewUserPage> {
         CustomTextFormField(
             title: 'Email', hintText: 'Isi Email', controller: emailController),
         CustomTextFormField(
-            title: 'Nama Lengkap',
-            hintText: 'Isi Nama Lengkap',
-            controller: fullnameController),
+            title: 'First Name',
+            hintText: 'Isi Nama Depan',
+            controller: firstNameController),
+        CustomTextFormField(
+            title: 'Last Name',
+            hintText: 'Isi Nama Belakang',
+            controller: lastNameController),
         CustomTextFormField(
             title: 'Password',
             hintText: 'Password',
@@ -87,13 +92,17 @@ class _AddNewUserPageState extends State<AddNewUserPage> {
             //// ADD DATA HERE
             insertCollection.add({
               'email': emailController.text,
-              'fullname': fullnameController.text,
+              'firstName': firstNameController.text,
+              'lastName': lastNameController.text,
+              'fullname':
+                  firstNameController.text + ' ' + lastNameController.text,
               'password': passwordController.text,
               'userSignUp': DateTime.now(),
               'lastEdited': DateTime.now()
             });
             emailController.text = '';
-            fullnameController.text = '';
+            firstNameController.text = '';
+            lastNameController.text = '';
             passwordController.text = '';
           },
           child: Container(

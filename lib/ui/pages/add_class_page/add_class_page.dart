@@ -102,7 +102,62 @@ class _AddClassPageState extends State<AddClassPage> {
               'kategoriCourse': kategoriController.text,
               'participantCourse': 2,
               'courseCreated': DateTime.now(),
-              'lastEdited': DateTime.now()
+              'lastEdited': DateTime.now(),
+              'thumbnailCourse':
+                  'https://firebasestorage.googleapis.com/v0/b/beelajar-998c7.appspot.com/o/Assets%2Fimages%2Fstil-staMgYWHM7s-unsplash.jpg?alt=media&token=2b67ebdb-d488-49c5-b1eb-be8c862ea8ec',
+              'materi': {
+                'Module 1': {
+                  'Materi 1': {
+                    'namaMateri': 'Materi 1',
+                    'tipeMateri': 'pdf',
+                    'urlMateri': 'khdjsahdka'
+                  },
+                  'Materi 2': {
+                    'namaMateri': 'Materi 2',
+                    'tipeMateri': 'video',
+                    'urlMateri': 'khdjsahdka'
+                  },
+                  'Materi 3': {
+                    'namaMateri': 'Materi 3',
+                    'tipeMateri': 'youtube_video',
+                    'urlMateri': 'khdjsahdka'
+                  }
+                },
+                'Module 2': {
+                  'Materi 1': {
+                    'namaMateri': 'Materi 1',
+                    'tipeMateri': 'pdf',
+                    'urlMateri': 'khdjsahdka'
+                  },
+                  'Materi 2': {
+                    'namaMateri': 'Materi 2',
+                    'tipeMateri': 'video',
+                    'urlMateri': 'khdjsahdka'
+                  },
+                  'Materi 3': {
+                    'namaMateri': 'Materi 3',
+                    'tipeMateri': 'youtube_video',
+                    'urlMateri': 'khdjsahdka'
+                  }
+                },
+                'Module 3': {
+                  'Materi 1': {
+                    'namaMateri': 'Materi 1',
+                    'tipeMateri': 'pdf',
+                    'urlMateri': 'khdjsahdka'
+                  },
+                  'Materi 2': {
+                    'namaMateri': 'Materi 2',
+                    'tipeMateri': 'video',
+                    'urlMateri': 'khdjsahdka'
+                  },
+                  'Materi 3': {
+                    'namaMateri': 'Materi 3',
+                    'tipeMateri': 'youtube_video',
+                    'urlMateri': 'khdjsahdka'
+                  }
+                }
+              }
             });
             titleController.text = '';
             subTitleController.text = '';
